@@ -132,31 +132,37 @@ exports.player_lookup = function(req, res) {
     if((req.xhr || req.headers.accept.indexOf('json') > -1) && req.session.admin) {
         if(!(isNaN(req.body.searchfor))) {
             db.query("SELECT * from players where pid = ?;SELECT * FROM player_logs WHERE pid = ? AND action IN ('bankChange','cashChange','TransferedMoney','SellItem');",[req.body.searchfor,req.body.searchfor], (error, result) => {
-                if(result[0][0].exp_total == undefined) return res.send({"code":404,"message":"Not found"}); 
-		        result[0][0].exp_total = formatNumber(result[0][0].exp_total);
-                result[0][0].bankacc = prettyMoney(result[0][0].bankacc);
-                result[0][0].cash = prettyMoney(result[0][0].cash);
-                result[0][0].bguid = uidguid(result[0][0].pid);
-                result[0][0].last_seen = moment(result[0][0].last_seen).fromNow();
-                var l = [];
-                result[1].forEach(e => {
-                    var s = {};
-                    s = e;
-		    if(s.action == 'SellItem') {} else{
-                    s.info = parseNum(e.info);}
-                    l.push(s);
-                });
-
-                res.send({"code":200,"message":result[0][0],"logs":l});
+                try {
+                    result[0][0].exp_total = formatNumber(result[0][0].exp_total);
+                    result[0][0].bankacc = prettyMoney(result[0][0].bankacc);
+                    result[0][0].cash = prettyMoney(result[0][0].cash);
+                    result[0][0].bguid = uidguid(result[0][0].pid);
+                    result[0][0].last_seen = moment(result[0][0].last_seen).fromNow();
+                    var l = [];
+                    result[1].forEach(e => {
+                        var s = {};
+                        s = e;
+                if(s.action == 'SellItem') {} else{
+                        s.info = parseNum(e.info);}
+                        l.push(s);
+                    });
+    
+                    res.send({"code":200,"message":result[0][0],"logs":l});   
+                } catch (error) {
+                    res.send({"code":404,"message":"Not found"});
+                }
             });
         } else {
             db.query(`SELECT * from players where name = ?`,[req.body.searchfor], (error, result) => {
-                if(result[0].exp_total == undefined) return res.send({"code":404,"message":"Not found"}); 
-                result[0].exp_total = formatNumber(result[0].exp_total);
-                result[0].bankacc = prettyMoney(result[0].bankacc);
-                result[0].cash = prettyMoney(result[0].cash);
-                result[0].bguid = uidguid(result[0].pid);
-                res.send({"code":200,"message":result[0],"logs":{}});
+                try {
+                    result[0].exp_total = formatNumber(result[0].exp_total);
+                    result[0].bankacc = prettyMoney(result[0].bankacc);
+                    result[0].cash = prettyMoney(result[0].cash);
+                    result[0].bguid = uidguid(result[0].pid);
+                    res.send({"code":200,"message":result[0],"logs":{}});
+                } catch (error) {
+                    res.send({"code":404,"message":"Not found"});
+                }
             });
 
         }
