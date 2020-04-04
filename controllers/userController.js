@@ -142,8 +142,9 @@ exports.player_lookup = function(req, res) {
                     result[1].forEach(e => {
                         var s = {};
                         s = e;
-                if(s.action == 'SellItem') {} else{
-                        s.info = parseNum(e.info);}
+                        if(s.action == 'SellItem') {} else{
+                            s.info = parseNum(e.info);
+                        }
                         l.push(s);
                     });
     
