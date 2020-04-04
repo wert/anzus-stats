@@ -53,7 +53,7 @@ app.set('view engine', 'ejs');
 
 //setup session
 app.use(session({
-  secret:require('crypto').randomBytes(64).toString('base64').replace(/\//g,'_').replace(/\+/g,'-'),
+  secret:process.env.SECRET,
   key: 'redisStore', 
   resave: false,
   saveUninitialized: false,
