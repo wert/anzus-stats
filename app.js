@@ -12,7 +12,6 @@ const {redisStore} = require("./middleware/redisStore")
 const dotenv = require('dotenv');
 dotenv.config();
 
-require('./utils/loadRoutes.js')(app);
 
 //route list
 const indexRouter = require('./routes/index');
@@ -43,7 +42,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 ///
-
+require('./utils/loadRoutes.js')(app);
 
 app.use(express.json({ limit: '300kb' })); //limit json body
 
