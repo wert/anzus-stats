@@ -7,7 +7,7 @@ const helmet = require('helmet');
 const logger = require('./middleware/logger')
 const cloudflare = require('cloudflare-express');
 
-const redisStore = require("./middleware/redisStore")
+const {redisStore} = require("./middleware/redisStore")
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -50,7 +50,7 @@ app.use(session({
   cookie: {
     secure: false
   },
-  store: redisStore,
+  store: redisStore
 }));
 
 var winston = require('./middleware/logger');
