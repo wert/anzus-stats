@@ -1,9 +1,9 @@
 'use strict';
 
-const fs = require('fs'), 
-      path = require('path'), 
-      colors = require('colors'),
-      _ =  require('underscore');
+const fs = require('fs'),
+    path = require('path'),
+    colors = require('colors'),
+    _ = require('underscore');
 
 module.exports = function(app, options) {
 	var defaults = {
@@ -20,10 +20,9 @@ module.exports = function(app, options) {
     })
     .forEach(function(file) {
         try {
-            
             var route = require(defaults.dir + '/' + file);
             console.log(`--Adding routes from: ${file} - ${file.slice(0, -3)}`.yellow)
-            app.use((file.slice(0, -3) == 'index.js' ? '/' : `/${file.slice(0, -3)}`), route);
+            app.use((file.slice(0, -3) == 'index' ? '/' : `/${file.slice(0, -3)}`), route);
         } catch (error) {
             console.log(`${error}`.red)
         }
