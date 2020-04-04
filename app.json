@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "stats",
+            "script": "npm",
+            "args" : "start"
+        }
+    ]
+}

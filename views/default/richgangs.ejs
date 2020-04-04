@@ -1,0 +1,63 @@
+<%- include("./head") %>
+
+<div class="c-body">
+    <main class="c-main">
+    <div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-3" style="margin: auto;width:40%">
+      <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title">Total Bank</h5>
+            <p class="card-text"><%= total.totalGangBank %></p>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3" style="margin: auto;width:40%">
+      <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title">Total Gangs</h5>
+            <p class="card-text"><%= total.gangs %></p>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin: auto;width:60%">
+    <div class="card-header">Top 10 Gangs</div>
+    <div class="card-body">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-responsive-sm sortable" id="testingTable">
+    <thead>
+    <tr>
+    <th>Num</th>
+    <th>Gang</th>
+    <th>Bank</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% gang.forEach(function(g) { %>
+        <tr>
+          <th scope="row"> 
+            <%= g.num %>
+          </th>
+          <td>
+            <%= g.name %>
+          </td>
+          <td>
+            <%= g.bank %>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+    </table>
+    </div></div>
+    </div><br><br>
+</div></main>
+</div>
+<%- include("./footer") %>
+</html>

@@ -1,0 +1,42 @@
+<%- include("./head") %>
+<script type="text/javascript" src="/js/login.js"></script>
+<div class="c-body">
+    <main class="c-main">
+        <div class="container-fluid" style="margin-top: 200px;">
+            <div class="row justify-content-center" style="width: 40%;margin: auto;top: auto;">
+                <div class="col-md-8">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <center><h1 style="margin-bottom: 15px;color:#fff">Login</h1></center>
+                                <p class="text-muted" id="message"></p>
+                                <div class="input-group mb-3">
+                                    
+                                    <div class="input-group-prepend"><span class="input-group-text">
+            <svg class="c-icon">
+            <use xlink:href="/images/stuff.svg#cil-user"></use>
+            </svg></span></div>
+                <input class="form-control" id="username" type="text" placeholder="Username" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+            </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend"><span class="input-group-text">
+            <svg class="c-icon">
+            <use xlink:href="/images/stuff.svg#cil-lock-locked"></use>
+            </svg></span></div>
+                                    <input class="form-control" id="password" type="password" placeholder="Password" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-primary px-4" id="loginBtn" type="button">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<%- include("./footer") %>
+</html>

@@ -1,0 +1,91 @@
+<%- include("./head") %>
+
+<div class="c-body">
+    <main class="c-main">
+    <div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title">Total Cash</h5>
+            <p class="card-text"><%= total.totalPlayerCash %></p>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title">Total Bank</h5>
+            <p class="card-text"><%= total.totalPlayerBank %></p>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title">Total Economy</h5>
+            <p class="card-text"><%= total.eco %></p>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title">Total Characters</h5>
+            <p class="card-text"><%= total.totalCharacterCount %></p>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin: auto;width:60%">
+    <div class="card-header">Top 15 Players</div>
+    <div class="card-body">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-responsive-sm sortable" id="testingTable">
+    <thead>
+    <tr>
+    <th>Num</th>
+    <th>Player</th>
+    <th>Cash</th>
+    <th>Bank</th>
+    <th>Networth</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% players.forEach(function(player) { %>
+        <tr>
+          <th scope="row"> 
+            <%= player.num %>
+          </th>
+          <td>
+            <%= player.name %>
+          </td>
+          <td>
+            <%= player.cash %>
+          </td>
+          <td>
+            <%= player.bankacc %>
+          </td>
+          <td>
+            <%= player.networth %>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+    </table>
+    </div></div>
+    </div><br><br>
+</div></main>
+</div>
+<%- include("./footer") %>
+</html>

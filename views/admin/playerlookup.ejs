@@ -1,0 +1,208 @@
+<%- include("../default/head") %>
+<script type="text/javascript" src="/js/plookup.js"></script>
+<script type="text/javascript" src="/js/underscore-min.js">
+</script>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+
+<link href="/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="/css/select2.min.css" rel="stylesheet" />
+<script src="/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+
+<div class="c-body">
+    <main class="c-main">
+        <div class="container-fluid">
+            <div id="ui-view">
+                <div>
+                    <div class="fade-in">
+                        <div class="row1">
+                            <div id="loaderDiv">
+                                <div class="lds-hourglass"></div>
+                            </div>
+                            <div class="col-sm-6" id="mainSearch" style="margin: auto;">
+                                <div class="card">
+                                    <div class="card-header">Player Lookup <small
+                                            style="color:red;font-weight: normal;">(One field is required)</small>
+                                        
+                                <p class="text-muted" id="message"></p>
+                            </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="pname" style="color: #fff;">Player Name <small
+                                                            style="color:red;font-weight: normal;">(optional)</small></label>
+                                                    <input class="form-control" id="pname" style="color:white"
+                                                        type="text" placeholder="Tax Wax">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="steamid" style="color: #fff;">Steam ID <small
+                                                            style="color:red;font-weight: normal;">(optional)</small></label>
+                                                    <input class="form-control" id="steamid" style="color:white"
+                                                        type="text" placeholder="76561198880624547">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn px-4" style="color:#fff;box-shadow:unset" id="searchBtn"
+                                            type="button">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="margin: auto;">
+                                <div class="row" id="playerInfo" style="display: flex;">
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">Player Info</div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">SteamID</span></div>
+                                                        <p class="form-control player-info" id="pid" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Name</span></div>
+                                                        <p class="form-control player-info" id="name" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Aliases</span></div>
+                                                        <p class="form-control player-info" id="aliases" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Bank</span></div>
+                                                        <P class="form-control player-info" id="bank" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Cash</span></div>
+                                                        <P class="form-control player-info" id="cash" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">BGUID</span></div>
+                                                        <P class="form-control player-info" id="bguid" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Last Seen</span></div>
+                                                        <P class="form-control player-info" id="lseen" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">Whitelist Levels</div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Cop Level</span></div>
+                                                        <p class="form-control player-info" id="coplvl" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Cop Dept</span></div>
+                                                        <p class="form-control player-info" id="copdept" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Medic Level</span></div>
+                                                        <P class="form-control player-info" id="mediclvl" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">Medic Dept</span></div>
+                                                        <P class="form-control player-info" id="medicdept" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">USCG Level</span></div>
+                                                        <P class="form-control player-info" id="uscglvl" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text">DOJ Level</span></div>
+                                                        <P class="form-control player-info" id="dojlvl" type="text">
+                                                            <div class="input-group-append"></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" id="userLogs" style="margin:auto;width:70%;margin-bottom: 10px;">
+                                <div class="card-header"> User Logs
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="userLogTable" style="background-color:#242424"
+                                                class="table table-striped table-bordered datatable dataTable no-footer">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>PID</th>
+                                                        <th>Type</th>
+                                                        <th>Info</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<%- include("../default/footer") %>

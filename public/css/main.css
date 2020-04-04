@@ -1,0 +1,27 @@
+body {
+    background-image: url('//content.invisioncic.com/o280594/monthly_2020_02/20191019144619_1.jpg.92fff784b89b780aedd2138e92a2dd2d.jpg');
+}
+.border-light {border-color: #343a40  !important};
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" ;
+};
+body{background-repeat: no-repeat;};
+.tt-dropdown-menu {
+    position: absolute;
+    left: 0px;
+    z-index: 100;
+    display: none;
+    right: auto;
+    top: 40px;
+    background:rgb(52, 58, 64) none repeat scroll 0% 0%;
+    color:white;
+    border-radius: 3px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    padding: 2px 10px;
+};
+.table-wrapper-scroll-y {
+display: block;
+};
+.table td, .table th {vertical-align: inherit !important;};
+.card-deck .card {margin-right: 10px !important;margin-left: 0px !important;};

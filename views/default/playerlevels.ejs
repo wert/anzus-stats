@@ -1,0 +1,67 @@
+<%- include("./head") %>
+
+<div class="c-body">
+    <main class="c-main">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-sm-3" style="margin: auto;width:40%">
+          <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+            <div class="card-body">
+              <center>
+                <h5 class="card-title">Total XP</h5>
+                <p class="card-text"><%= total.totalXP %></p>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3" style="margin: auto;width:40%">
+          <div class="card text-white "style="background-color: #242424;border-color: #181924;">
+            <div class="card-body">
+              <center>
+                <h5 class="card-title">Total Levels</h5>
+                <p class="card-text"><%= total.totalLevels %></p>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="card" style="margin: auto;width:60%">
+    <div class="card-header">Top 15 Players</div>
+    <div class="card-body">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-responsive-sm sortable" id="testingTable">
+    <thead>
+    <tr>
+    <th>Num</th>
+    <th>Player</th>
+    <th>XP</th>
+    <th>Level</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% players.forEach(function(player) { %>
+        <tr>
+          <th scope="row"> 
+            <%= player.num %>
+          </th>
+          <td>
+            <%= player.name %>
+          </td>
+          <td>
+            <%= player.xp %>
+          </td>
+          <td>
+            <%= player.level %>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+    </table>
+    </div></div>
+    </div><br><br>
+</div></main>
+</div>
+<%- include("./footer") %>
+</html>

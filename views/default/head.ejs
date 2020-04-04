@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+ <head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="/js/sorttable.js"></script>
+ 
+ <script src="/js/coreui.bundle.js"></script>
+ <script src="/js/jquery.min.js"></script> 
+ <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
+
+
+ </head>
+ <header class="c-header c-header-dark c-header-fixed"></header>
+ <body class="c-app">
+  <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar" style="outline:0">
+    <div class="c-sidebar-brand d-md-down-none">
+    <img class="c-sidebar-brand-full" height="46" src="/images/logo.png"></img>
+    
+    <img class="c-sidebar-brand-minimized" height="46" width="46" src="/images/logo.png"></img>
+
+    </div>
+    <ul class="c-sidebar-nav">
+
+    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/">
+    <svg class="c-sidebar-nav-icon">
+    <use xlink:href="/images/stuff.svg#cil-speedometer"></use>
+    </svg> Home<span class="badge badge-info">NEW</span></a></li>
+
+    <li class="c-sidebar-nav-title">Info</li>
+    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/top/players">
+      <svg class="c-sidebar-nav-icon">
+      <use xlink:href="/images/stuff.svg#cil-contact"></use>
+      </svg> Players</a></li>
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/top/gangs">
+        <svg class="c-sidebar-nav-icon">
+        <use xlink:href="/images/stuff.svg#cil-casino"></use>
+        </svg> Gangs</a></li>
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/highest/levels">
+        <svg class="c-sidebar-nav-icon">
+        <use xlink:href="/images/stuff.svg#cil-bar-chart"></use>
+        </svg> Highest Levels</a></li>
+
+  <% if(admin) { %>
+  <li class="c-sidebar-nav-title">Admin</li>
+  <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/player/lookup">
+    <svg class="c-sidebar-nav-icon">
+    <use xlink:href="/images/stuff.svg#cil-child"></use>
+    </svg> Player Lookup<span class="badge badge-info">NEW</span></a></li>
+
+    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/player/garage">
+      <svg class="c-sidebar-nav-icon">
+      <use xlink:href="/images/stuff.svg#cil-car-alt"></use>
+      </svg> Player Garage<span class="badge badge-info">NEW</span></a></li>
+
+  <% }if(dev){%>
+  <li class="c-sidebar-nav-title">Secret Area</li>
+  <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/dev/users">
+    <svg class="c-sidebar-nav-icon">
+    <use xlink:href="/images/stuff.svg#cil-contact"></use>
+    </svg> Users</a></li>
+  <%}if(dev){%>
+    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/dev/logs">
+      <svg class="c-sidebar-nav-icon">
+      <use xlink:href="/images/stuff.svg#cil-description"></use>
+      </svg> Logs</a></li>
+      <%}%>
+      <% if(!username) {%>
+      <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-success" href="/login">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="/images/stuff.svg#cil-user"></use>
+        </svg> Login</a></li>
+      
+        <% }if(username) {%>
+    <li class="c-sidebar-nav-item mt-auto"><a class="c-sidebar-nav-link c-sidebar-nav-link-danger" href="/logout">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="/images/stuff.svg#cil-lock-locked"></use>
+        </svg> Logout (<%=username %>)</a></li>
+        <% }%>
+    </ul>
+    <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-unfoldable" style="outline:0"></button>
+    </div>
+    </ul>
+    <div class="c-wrapper">
+      <header class="c-header c-header-dark c-header-fixed">
+      <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+      <svg class="c-icon c-icon-lg">
+      <use xlink:href="/images/stuff.svg#cil-menu"></use>
+      </svg>
+      </button><a class="c-header-brand d-lg-none c-header-brand-sm-up-center" href="#">
+      <svg width="118" height="46" alt="CoreUI Logo">
+        <use xlink:href="/images/stuff.svg#cil-menu"></use>
+      </svg></a>
+      <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" style="outline:0" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+      <svg class="c-icon c-icon-lg">
+        <use xlink:href="/images/stuff.svg#cil-menu"></use>
+      </svg>
+      </button>
+      </header>
