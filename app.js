@@ -7,21 +7,10 @@ const helmet = require('helmet');
 const logger = require('./middleware/logger')
 const cloudflare = require('cloudflare-express');
 
+const redisStore = require("./middleware/redisStore")
+
 const dotenv = require('dotenv');
 dotenv.config();
-
-const redis = require('redis');
-const redisClient = redis.createClient({host: process.env.REDISHOST,port: 6379});
-const redisStore = require('connect-redis')(session);
-
-//route list
-const indexRouter = require('./routes/index');
-const userRouter = require('./routes/users');
-const topRouter = require('./routes/top');
-const highestRouter = require('./routes/highest');
-const adminRouter = require('./routes/admin');
-const devRouter = require('./routes/dev');
-//
 
 require('./models/ingame'); //setup ingame db
 
@@ -44,6 +33,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 ///
 
+require('./utils/loadRoutes.js')(app, options);
 
 app.use(express.json({ limit: '300kb' })); //limit json body
 
@@ -54,13 +44,13 @@ app.set('view engine', 'ejs');
 //setup session
 app.use(session({
   secret:process.env.SECRET,
-  key: 'redisStore', 
+  key: 'stats', 
   resave: false,
   saveUninitialized: false,
   cookie: {
     secure: false
   },
-  store: new redisStore({ host: process.env.REDISHOST, port: 6379, client: redisClient, ttl: 86400 }),
+  store: redisStore,
 }));
 
 var winston = require('./middleware/logger');
@@ -80,14 +70,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//load routes
-app.use('/', indexRouter);
-app.use('/', userRouter);
-app.use('/highest', highestRouter);
-app.use('/top', topRouter);
-app.use('/admin', adminRouter);
-app.use('/dev', devRouter);
 
 app.use(function(req, res, next) {
   res.status(404).redirect('/')

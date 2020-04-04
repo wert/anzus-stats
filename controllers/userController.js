@@ -130,7 +130,6 @@ exports.player_lookup = function(req, res) {
         return res.sendStatus(415);
     };
     if((req.xhr || req.headers.accept.indexOf('json') > -1) && req.session.admin) {
-        console.log(req.session.key)
         if(!(isNaN(req.body.searchfor))) {
             db.query("SELECT * from players where pid = ?;SELECT * FROM player_logs WHERE pid = ? AND action IN ('bankChange','cashChange','TransferedMoney','SellItem');",[req.body.searchfor,req.body.searchfor], (error, result) => {
                 try {
