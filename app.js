@@ -33,7 +33,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 ///
 
-require('./utils/loadRoutes.js')(app, options);
+require('./utils/loadRoutes.js')(app);
 
 app.use(express.json({ limit: '300kb' })); //limit json body
 
