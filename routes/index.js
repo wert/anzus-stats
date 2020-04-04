@@ -17,7 +17,7 @@ const {prettyMoney} = require('../utils/functions');
 //   })
 // });
 router.get('/', (req,res) => {
-  res.render('default/index', {admin:false,dev:false,slt:false,username: req.session.username
+  res.render('default/index', {admin:false,dev:false,slt:false,username: (req.session.username ? req.session.username : false)
   })
 });
 
