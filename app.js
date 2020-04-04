@@ -12,6 +12,15 @@ const {redisStore} = require("./middleware/redisStore")
 const dotenv = require('dotenv');
 dotenv.config();
 
+//route list
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/users');
+const topRouter = require('./routes/top');
+const highestRouter = require('./routes/highest');
+const adminRouter = require('./routes/admin');
+const devRouter = require('./routes/dev');
+//
+
 require('./models/ingame'); //setup ingame db
 
 const app = express();
@@ -33,7 +42,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 ///
 
-require('./utils/loadRoutes.js')(app);
 
 app.use(express.json({ limit: '300kb' })); //limit json body
 
@@ -50,7 +58,7 @@ app.use(session({
   cookie: {
     secure: false
   },
-  store: redisStore
+  store: redisStore,
 }));
 
 var winston = require('./middleware/logger');
@@ -70,6 +78,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//load routes
+app.use('/', indexRouter);
+app.use('/', userRouter);
+app.use('/highest', highestRouter);
+app.use('/top', topRouter);
+app.use('/admin', adminRouter);
+app.use('/dev', devRouter);
 
 app.use(function(req, res, next) {
   res.status(404).redirect('/')
