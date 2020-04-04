@@ -39,19 +39,23 @@ router.get('/players', (req, reply) => {
           DESC LIMIT 15;SELECT COUNT(*) AS totalCharacterCount, SUM(bankacc) AS totalPlayerBank, SUM(cash) AS totalPlayerCash FROM players;`, (error, result) => {
       console.log(error)
 
-
+      
       var people = [];
       let i = 0;
-      result[0].forEach(element => {
-        i += 1;
-        people.push({
-          num: i,
-          bankacc: prettyMoney(element.bankacc),
-          cash: prettyMoney(element.cash),
-          name: element.name,
-          networth: prettyMoney(element.netWorth)
+      try {
+        result[0].forEach(element => {
+          i += 1;
+          people.push({
+            num: i,
+            bankacc: prettyMoney(element.bankacc),
+            cash: prettyMoney(element.cash),
+            name: element.name,
+            networth: prettyMoney(element.netWorth)
+          });
         });
-      });
+      } catch (error) {
+        people = result[0];
+      }
 
       var totals = JSON.parse(JSON.stringify(result[1]))[0];
       totals.eco = prettyMoney(totals.totalPlayerCash + totals.totalPlayerBank)
@@ -87,14 +91,18 @@ router.get('/gangs', (req, res) => {
 
       var gangs = [];
       let i = 0;
-      result[0].forEach(element => {
-        i += 1;
-        gangs.push({
-          num: i,
-          bank: prettyMoney(element.gangBank),
-          name: element.gangName
-        })
-      });
+      try {
+        result[0].forEach(element => {
+          i += 1;
+          gangs.push({
+            num: i,
+            bank: prettyMoney(element.gangBank),
+            name: element.gangName
+          })
+        });
+      } catch (error) {
+        gangs = result[0];
+      };
 
       var totals = JSON.parse(JSON.stringify(result[1]))[0];
       totals.totalGangBank = prettyMoney(totals.totalGangBank);
