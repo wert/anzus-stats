@@ -12,6 +12,8 @@ const {redisStore} = require("./middleware/redisStore")
 const dotenv = require('dotenv');
 dotenv.config();
 
+require('./utils/loadRoutes.js')(app);
+
 //route list
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/users');

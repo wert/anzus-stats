@@ -19,8 +19,13 @@ module.exports = function(app, options) {
       return (file.indexOf('.') !== 0) && (file.slice(-3) === '.js');
     })
     .forEach(function(file) {
-      var route = require(defaults.dir + '/' + file);
-      console.log(`--Adding routes from: ${file} - ${file.slice(0, -3)}`.yellow )
-      app.use((file.slice(0, -3) == 'index.js' ? '/' : `/${file.slice(0, -3)}`), route);
+        try {
+            
+            var route = require(defaults.dir + '/' + file);
+            console.log(`--Adding routes from: ${file} - ${file.slice(0, -3)}`.yellow)
+            app.use((file.slice(0, -3) == 'index.js' ? '/' : `/${file.slice(0, -3)}`), route);
+        } catch (error) {
+            console.log(`${error}`.red)
+        }
     });
 };
