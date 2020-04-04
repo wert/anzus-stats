@@ -14,12 +14,12 @@ dotenv.config();
 
 
 //route list
-// const indexRouter = require('./routes/index');
-// const userRouter = require('./routes/users');
-// const topRouter = require('./routes/top');
-// const highestRouter = require('./routes/highest');
-// const adminRouter = require('./routes/admin');
-// const devRouter = require('./routes/dev');
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/users');
+const topRouter = require('./routes/top');
+const highestRouter = require('./routes/highest');
+const adminRouter = require('./routes/admin');
+const devRouter = require('./routes/dev');
 //
 
 require('./models/ingame'); //setup ingame db
@@ -28,8 +28,6 @@ const app = express();
 app.use(helmet());
 app.use(rateLimiter);
 app.use(cloudflare.restore());
-
-require('./utils/loadRoutes.js')(app);
 
 //setup mongo
 const mongoose = require('mongoose');
@@ -82,13 +80,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// load routes
-// app.use('/', indexRouter);
-// app.use('/', userRouter);
-// app.use('/highest', highestRouter);
-// app.use('/top', topRouter);
-// app.use('/admin', adminRouter);
-// app.use('/dev', devRouter);
+//load routes
+app.use('/', indexRouter);
+app.use('/', userRouter);
+app.use('/highest', highestRouter);
+app.use('/top', topRouter);
+app.use('/admin', adminRouter);
+app.use('/dev', devRouter);
 
 app.use(function(req, res, next) {
   res.status(404).redirect('/')
