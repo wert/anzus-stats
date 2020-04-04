@@ -42,6 +42,7 @@ router.get('/players', (req, reply) => {
       
       var people = [];
       let i = 0;
+      var totals = [];
       try {
         result[0].forEach(element => {
           i += 1;
@@ -53,17 +54,15 @@ router.get('/players', (req, reply) => {
             networth: prettyMoney(element.netWorth)
           });
         });
+        setKey("players",people);
+        setKey("total",totals)
+        totals = JSON.parse(JSON.stringify(result[1]))[0];
+        totals.eco = prettyMoney(totals.totalPlayerCash + totals.totalPlayerBank)
+        totals.totalPlayerBank = prettyMoney(totals.totalPlayerBank)
+        totals.totalPlayerCash = prettyMoney(totals.totalPlayerCash)
       } catch (error) {
         console.log(error)
       }
-
-      var totals = JSON.parse(JSON.stringify(result[1]))[0];
-      totals.eco = prettyMoney(totals.totalPlayerCash + totals.totalPlayerBank)
-      totals.totalPlayerBank = prettyMoney(totals.totalPlayerBank)
-      totals.totalPlayerCash = prettyMoney(totals.totalPlayerCash)
-
-      setKey("players",people);
-      setKey("total",totals)
 
       reply.render('default/richplayers', {
         players: people,
@@ -91,6 +90,7 @@ router.get('/gangs', (req, res) => {
 
       var gangs = [];
       let i = 0;
+      var totals = [];
       try {
         result[0].forEach(element => {
           i += 1;
@@ -100,17 +100,16 @@ router.get('/gangs', (req, res) => {
             name: element.gangName
           })
         });
+        totals = JSON.parse(JSON.stringify(result[1]))[0];
+        totals.totalGangBank = prettyMoney(totals.totalGangBank);
+        totals.gangs = formatNumber(totals.totalGangCount)
+  
+        setKey("gangs",gangs);
+        setKey("gangtotal",totals)
+  
       } catch (error) {
         console.log(error)
       };
-
-      var totals = JSON.parse(JSON.stringify(result[1]))[0];
-      totals.totalGangBank = prettyMoney(totals.totalGangBank);
-      totals.gangs = formatNumber(totals.totalGangCount)
-
-      setKey("gangs",gangs);
-      setKey("gangtotal",totals)
-
       res.render('default/richgangs', {
         gang: gangs,
         total: totals,
