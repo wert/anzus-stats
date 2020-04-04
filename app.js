@@ -67,6 +67,15 @@ var winston = require('./middleware/logger');
 const morgan = require("morgan");
 app.use(morgan(':remote-addr - ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" - :response-time ms', { stream: winston.stream }));
 
+function requireHTTPS(req, res, next) {
+  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  next();
+}
+
+app.use(requireHTTPS);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
