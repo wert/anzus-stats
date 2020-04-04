@@ -7,7 +7,7 @@ const {setKey,setMultiKey,getKey} = require('../utils/nodeCache');
 
 router.get('/levels', (req, res) => {
   if(getKey("levels") != false) {
-    reply.render('default/playerlevels', {
+    res.render('default/playerlevels', {
       players: getKey("levels"),
       total: getKey("totallevel"),
       admin: req.session.admin,
