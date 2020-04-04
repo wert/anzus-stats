@@ -16,8 +16,10 @@ var router = express.Router();
 //   })
 // });
 router.get('/', (req,res) => {
-  console.log((req.session.username != undefined ? req.session.username : false))
-  res.render('default/index', {admin:false,dev:false,slt:false,username: false
+  var usr = (req.session.username != undefined ? req.session.username : false);
+  var ad = (req.session.admin != undefined ? req.session.admin : false)
+  var d = (req.session.dev != undefined ? req.session.dev : false)
+  res.render('default/index', {admin:ad,dev:d,slt:false,username: usr
   })
 });
 

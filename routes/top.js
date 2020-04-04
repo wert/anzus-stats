@@ -54,7 +54,7 @@ router.get('/players', (req, reply) => {
           });
         });
       } catch (error) {
-        people = result[0];
+        console.log(error)
       }
 
       var totals = JSON.parse(JSON.stringify(result[1]))[0];
@@ -101,7 +101,7 @@ router.get('/gangs', (req, res) => {
           })
         });
       } catch (error) {
-        gangs = result[0];
+        console.log(error)
       };
 
       var totals = JSON.parse(JSON.stringify(result[1]))[0];

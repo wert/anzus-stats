@@ -92,14 +92,18 @@ app.use(function(req, res, next) {
   res.status(404).redirect('/')
 });
 
+
 app.use(function(err, req, res, next) {
-  logger.info("test")
+  logger.info(err.message)
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  var usr = (req.session.username != undefined ? req.session.username : false);
+  var ad = (req.session.admin != undefined ? req.session.admin : false)
+  var d = (req.session.dev != undefined ? req.session.dev : false)
+  res.render('default/index', {admin:ad,dev:d,slt:false,username: usr})
 });
 
 module.exports = app;
