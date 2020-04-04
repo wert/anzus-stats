@@ -20,6 +20,7 @@ module.exports = function(app, options) {
     })
     .forEach(function(file) {
       var route = require(defaults.dir + '/' + file);
+      console.log(file === 'app.js' ? '/' : file.slice(0, -3))
       console.log(`--Adding routes from: ${file} - ${file.slice(0, -3)}`.yellow )
       app.use(file === 'app.js' ? '/' : file.slice(0, -3), route);
     });
