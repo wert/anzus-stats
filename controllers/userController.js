@@ -149,9 +149,9 @@ exports.player_lookup = function(req, res) {
                     });
     
                     res.send({"code":200,"message":result[0][0],"logs":l});   
-                } catch (error) {
+                } catch (e) {
                     console.log(error)
-                    res.send({"code":404,"message":"Not found","err":error});
+                    res.send({"code":404,"message":"Not found","err":e});
                 }
             });
         } else {
