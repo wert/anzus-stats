@@ -37,7 +37,6 @@ $(document).ready(function(){
                         $("#username").val("");
                         $("#password").val("");
                         $("#message").html(`<center><p class="btn btn-danger">${response.message}</p></center>`);
-                        console.log(response)
                     }else {
                         if(response.code === 200) {
                             $("#bguid").html(response.message.bguid)
@@ -57,7 +56,6 @@ $(document).ready(function(){
                             $("#playerInfo").show();
                             $("#userLogs").show();
 
-                            console.log(response)
                             $('#userLogTable').dataTable( {
                                 destroy: true,
                                 "language": {

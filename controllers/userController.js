@@ -151,7 +151,7 @@ exports.player_lookup = function(req, res) {
                     res.send({"code":200,"message":result[0][0],"logs":l});   
                 } catch (e) {
                     console.log(error)
-                    res.send({"code":404,"message":"Not found","err":e});
+                    res.send({"code":404,"message":"Not found"});
                 }
             });
         } else {
@@ -163,7 +163,7 @@ exports.player_lookup = function(req, res) {
                     result[0].bguid = uidguid(result[0].pid);
                     res.send({"code":200,"message":result[0],"logs":{}});
                 } catch (e) {
-                    res.send({"code":404,"message":"Not found","err":e});
+                    res.send({"code":404,"message":"Not found"});
                 }
             });
 
