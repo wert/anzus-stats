@@ -162,8 +162,8 @@ exports.player_lookup = function(req, res) {
                     result[0].cash = prettyMoney(result[0].cash);
                     result[0].bguid = uidguid(result[0].pid);
                     res.send({"code":200,"message":result[0],"logs":{}});
-                } catch (error) {
-                    res.send({"code":404,"message":"Not found"});
+                } catch (e) {
+                    res.send({"code":404,"message":"Not found","err":e});
                 }
             });
 
