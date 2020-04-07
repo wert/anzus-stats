@@ -37,6 +37,7 @@ $(document).ready(function(){
                         $("#username").val("");
                         $("#password").val("");
                         $("#message").html(`<center><p class="btn btn-danger">${response.message}</p></center>`);
+                        console.log(response.error)
                     }else {
                         if(response.code === 200) {
                             $("#bguid").html(response.message.bguid)
