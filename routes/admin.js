@@ -21,4 +21,13 @@ router.get('/player/garage', (req, res) => {
     }
 });
 
+router.get('/comp/calc', (req, res) => {
+    const info = req.session;
+    if(info.admin) {
+        res.render('admin/compcalc', {admin:info.admin,dev:info.dev,username:info.username})
+    } else {
+        res.redirect('/')
+    }
+});
+
 module.exports = router;
